@@ -1,168 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1.1 (Python 3.11.0 on win32)" generated="2024-11-02T02:03:23.297897" rpa="false" schemaversion="5">
-<suite id="s1" name="Stm32 Robot" source="D:\Workspace\STM32_Test_Projects\stm32_led_test\robot\stm32_robot.robot">
-<test id="s1-t1" name="Flash Firmware And Test LEDs" line="6">
-<kw name="Set Binary Path" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:23.344039" level="INFO">Binary path set to: D:\Workspace\STM32F411E_DISCO\STM32F411VET6_GPIO_and_UART\Objects\STM32F411VET6_GPIO_DRIVER.axf</msg>
-<arg>D:\\Workspace\\STM32F411E_DISCO\\STM32F411VET6_GPIO_and_UART\\Objects\\STM32F411VET6_GPIO_DRIVER.axf</arg>
-<status status="PASS" start="2024-11-02T02:03:23.342887" elapsed="0.002154"/>
+<robot generator="Robot 7.1.1 (Python 3.11.0 on win32)" generated="2024-11-02T16:06:03.348065" rpa="false" schemaversion="5">
+<suite id="s1" name="Stm32 Robot" source="D:\Workspace\STM32F411E_DISCO\STM32_LED_TEST\robot\stm32_robot.robot">
+<test id="s1-t1" name="Flash And Verify Firmware" line="5">
+<kw name="Flash Device Firmware" owner="STM32TestLibrary">
+<msg time="2024-11-02T16:06:06.894526" level="INFO">Firmware flashed successfully</msg>
+<doc>Flash the firmware to the device.</doc>
+<status status="PASS" start="2024-11-02T16:06:03.397078" elapsed="3.497448"/>
 </kw>
-<kw name="Set Programmer Path" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:23.346054" level="INFO">Programmer path set to: C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe</msg>
-<arg>C:\\Program Files\\STMicroelectronics\\STM32Cube\\STM32CubeProgrammer\\bin\\STM32_Programmer_CLI.exe</arg>
-<status status="PASS" start="2024-11-02T02:03:23.345041" elapsed="0.001013"/>
+<kw name="Initialize Device" owner="STM32TestLibrary">
+<msg time="2024-11-02T16:06:07.559647" level="INFO">Device initialization successful</msg>
+<doc>Initialize the device and verify communication.</doc>
+<status status="PASS" start="2024-11-02T16:06:06.895532" elapsed="0.664115"/>
 </kw>
-<kw name="Set Serial Port" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:23.347040" level="INFO">Serial port set to: COM3</msg>
-<arg>COM3</arg>
-<status status="PASS" start="2024-11-02T02:03:23.346054" elapsed="0.000986"/>
-</kw>
-<kw name="Set Serial Parameters" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:23.348054" level="INFO">Serial parameters set - Baudrate: 115200, Timeout: 1, Command Delay: 0.5</msg>
-<arg>baudrate=115200</arg>
-<arg>timeout=1</arg>
-<arg>command_delay=0.5</arg>
-<doc>Set serial communication parameters.</doc>
-<status status="PASS" start="2024-11-02T02:03:23.347040" elapsed="0.001014"/>
-</kw>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Flash Firmware" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:23.349043" level="INFO">Attempting to flash firmware: C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe -c port=SWD -w D:\Workspace\STM32F411E_DISCO\STM32F411VET6_GPIO_and_UART\Objects\STM32F411VET6_GPIO_DRIVER.axf 0x08000000 -v --start</msg>
-<msg time="2024-11-02T02:03:23.876381" level="INFO">Flashing successful!</msg>
-<msg time="2024-11-02T02:03:23.876381" level="INFO">Waiting for device to initialize...</msg>
-<doc>Flashes the firmware to the STM32 device.</doc>
-<status status="PASS" start="2024-11-02T02:03:23.349043" elapsed="3.528379"/>
-</kw>
-<msg time="2024-11-02T02:03:26.877422" level="INFO">${flash_result} = True</msg>
-<var>${flash_result}</var>
-<arg>Flash Firmware</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2024-11-02T02:03:23.349043" elapsed="3.528379"/>
-</kw>
-<kw name="Run Keyword If" owner="BuiltIn">
-<arg>not ${flash_result}</arg>
-<arg>Fail</arg>
-<arg>Firmware flashing failed</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2024-11-02T02:03:26.878428" elapsed="0.000997"/>
-</kw>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Verify Uart Connection" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:26.920544" level="INFO">Testing UART connection...</msg>
-<msg time="2024-11-02T02:03:27.421667" level="INFO">UART test response: UNKNOWN COMMAND</msg>
-<doc>Verify UART connection is working properly.</doc>
-<status status="PASS" start="2024-11-02T02:03:26.879425" elapsed="0.666770"/>
-</kw>
-<msg time="2024-11-02T02:03:27.546195" level="INFO">${uart_result} = True</msg>
-<var>${uart_result}</var>
-<arg>Verify UART Connection</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2024-11-02T02:03:26.879425" elapsed="0.666770"/>
-</kw>
-<kw name="Run Keyword If" owner="BuiltIn">
-<arg>not ${uart_result}</arg>
-<arg>Fail</arg>
-<arg>UART connection verification failed</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2024-11-02T02:03:27.547198" elapsed="0.001001"/>
-</kw>
-<kw name="Test Single Led" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:28.089905" level="INFO">Successfully turned ON orange LED</msg>
-<arg>orange</arg>
-<arg>ON</arg>
-<doc>Test a single LED with detailed feedback.</doc>
-<status status="PASS" start="2024-11-02T02:03:27.548413" elapsed="0.660496"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-11-02T02:03:29.211094" level="INFO">Slept 1 second.</msg>
-<arg>1s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-11-02T02:03:28.209913" elapsed="1.001181"/>
-</kw>
-<kw name="Test Single Led" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:29.760263" level="INFO">Successfully turned OFF orange LED</msg>
-<arg>orange</arg>
-<arg>OFF</arg>
-<doc>Test a single LED with detailed feedback.</doc>
-<status status="PASS" start="2024-11-02T02:03:29.211819" elapsed="0.665106"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-11-02T02:03:30.879044" level="INFO">Slept 1 second.</msg>
-<arg>1s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-11-02T02:03:29.877932" elapsed="1.001112"/>
-</kw>
-<kw name="Test Single Led" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:31.421290" level="INFO">Successfully turned ON blue LED</msg>
-<arg>blue</arg>
-<arg>ON</arg>
-<doc>Test a single LED with detailed feedback.</doc>
-<status status="PASS" start="2024-11-02T02:03:30.879790" elapsed="0.670242"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-11-02T02:03:32.552549" level="INFO">Slept 1 second.</msg>
-<arg>1s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-11-02T02:03:31.551042" elapsed="1.001507"/>
-</kw>
-<kw name="Test Single Led" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:33.096385" level="INFO">Successfully turned OFF blue LED</msg>
-<arg>blue</arg>
-<arg>OFF</arg>
-<doc>Test a single LED with detailed feedback.</doc>
-<status status="PASS" start="2024-11-02T02:03:32.553559" elapsed="0.651153"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-11-02T02:03:34.205811" level="INFO">Slept 1 second.</msg>
-<arg>1s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-11-02T02:03:33.205719" elapsed="1.000092"/>
-</kw>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Test Leds Via Uart" owner="STM32TestLibrary">
-<msg time="2024-11-02T02:03:34.255621" level="INFO">Testing UART connection...</msg>
-<msg time="2024-11-02T02:03:34.756279" level="INFO">UART test response: UNKNOWN COMMAND</msg>
-<msg time="2024-11-02T02:03:35.425447" level="INFO">Successfully turned ON orange LED</msg>
-<msg time="2024-11-02T02:03:36.590495" level="INFO">Successfully turned OFF orange LED</msg>
-<msg time="2024-11-02T02:03:37.755234" level="INFO">Successfully turned ON blue LED</msg>
-<msg time="2024-11-02T02:03:38.935454" level="INFO">Successfully turned OFF blue LED</msg>
-<msg time="2024-11-02T02:03:39.564040" level="INFO">All LED tests completed successfully!</msg>
-<doc>Tests the LEDs via UART using the previously set serial port.</doc>
-<status status="PASS" start="2024-11-02T02:03:34.206467" elapsed="5.357573"/>
-</kw>
-<msg time="2024-11-02T02:03:39.564040" level="INFO">${led_result} = True</msg>
-<var>${led_result}</var>
-<arg>Test LEDs Via UART</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2024-11-02T02:03:34.206467" elapsed="5.358594"/>
-</kw>
-<kw name="Run Keyword If" owner="BuiltIn">
-<arg>not ${led_result}</arg>
-<arg>Fail</arg>
-<arg>LED testing failed</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2024-11-02T02:03:39.566041" elapsed="0.000000"/>
-</kw>
-<doc>Flash firmware and test LED functionality</doc>
-<tag>flash</tag>
-<tag>led</tag>
-<tag>regression</tag>
-<timeout value="5 minutes"/>
-<status status="PASS" start="2024-11-02T02:03:23.341887" elapsed="16.224734"/>
+<status status="PASS" start="2024-11-02T16:06:03.395056" elapsed="4.165607"/>
 </test>
-<status status="PASS" start="2024-11-02T02:03:23.299898" elapsed="16.268692"/>
+<test id="s1-t2" name="Test Orange LED" line="9">
+<kw name="Turn LED orange ON" owner="STM32TestLibrary" source_name="Turn LED ${color} ${action}">
+<msg time="2024-11-02T16:06:08.219628" level="INFO">Successfully turned ON orange LED</msg>
+<doc>Control LED state with specified color and action.</doc>
+<status status="PASS" start="2024-11-02T16:06:07.562651" elapsed="0.656977"/>
+</kw>
+<kw name="Sleep">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-02T16:06:09.221762" level="INFO">Slept 1 second.</msg>
+<arg>${duration}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-02T16:06:08.221263" elapsed="1.000499"/>
+</kw>
+<arg>1s</arg>
+<status status="PASS" start="2024-11-02T16:06:08.220257" elapsed="1.001505"/>
+</kw>
+<kw name="Turn LED orange OFF" owner="STM32TestLibrary" source_name="Turn LED ${color} ${action}">
+<msg time="2024-11-02T16:06:09.882295" level="INFO">Successfully turned OFF orange LED</msg>
+<doc>Control LED state with specified color and action.</doc>
+<status status="PASS" start="2024-11-02T16:06:09.222764" elapsed="0.659531"/>
+</kw>
+<kw name="Sleep">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-02T16:06:10.884768" level="INFO">Slept 1 second.</msg>
+<arg>${duration}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-02T16:06:09.883296" elapsed="1.001472"/>
+</kw>
+<arg>1s</arg>
+<status status="PASS" start="2024-11-02T16:06:09.883296" elapsed="1.001472"/>
+</kw>
+<status status="PASS" start="2024-11-02T16:06:07.561651" elapsed="3.324118"/>
+</test>
+<test id="s1-t3" name="Test Blue LED" line="15">
+<kw name="Turn LED blue ON" owner="STM32TestLibrary" source_name="Turn LED ${color} ${action}">
+<msg time="2024-11-02T16:06:11.551558" level="INFO">Successfully turned ON blue LED</msg>
+<doc>Control LED state with specified color and action.</doc>
+<status status="PASS" start="2024-11-02T16:06:10.887770" elapsed="0.663788"/>
+</kw>
+<kw name="Sleep">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-02T16:06:12.553945" level="INFO">Slept 1 second.</msg>
+<arg>${duration}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-02T16:06:11.552559" elapsed="1.001386"/>
+</kw>
+<arg>1s</arg>
+<status status="PASS" start="2024-11-02T16:06:11.552559" elapsed="1.001386"/>
+</kw>
+<kw name="Turn LED blue OFF" owner="STM32TestLibrary" source_name="Turn LED ${color} ${action}">
+<msg time="2024-11-02T16:06:13.218185" level="INFO">Successfully turned OFF blue LED</msg>
+<doc>Control LED state with specified color and action.</doc>
+<status status="PASS" start="2024-11-02T16:06:12.554946" elapsed="0.663239"/>
+</kw>
+<kw name="Sleep">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-02T16:06:14.220659" level="INFO">Slept 1 second.</msg>
+<arg>${duration}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-02T16:06:13.219186" elapsed="1.001473"/>
+</kw>
+<arg>1s</arg>
+<status status="PASS" start="2024-11-02T16:06:13.219186" elapsed="1.001473"/>
+</kw>
+<status status="PASS" start="2024-11-02T16:06:10.886773" elapsed="3.334890"/>
+</test>
+<test id="s1-t4" name="Test All LEDs Sequence" line="21">
+<kw name="Test All LEDs" owner="STM32TestLibrary">
+<msg time="2024-11-02T16:06:14.891310" level="INFO">Successfully turned ON orange LED</msg>
+<msg time="2024-11-02T16:06:15.549668" level="INFO">Successfully turned OFF orange LED</msg>
+<msg time="2024-11-02T16:06:16.223563" level="INFO">Successfully turned ON blue LED</msg>
+<msg time="2024-11-02T16:06:16.897893" level="INFO">Successfully turned OFF blue LED</msg>
+<msg time="2024-11-02T16:06:16.897893" level="INFO">All LED tests completed successfully</msg>
+<doc>Test all LEDs in sequence.</doc>
+<status status="PASS" start="2024-11-02T16:06:14.224001" elapsed="2.673892"/>
+</kw>
+<status status="PASS" start="2024-11-02T16:06:14.222663" elapsed="2.675230"/>
+</test>
+<status status="PASS" start="2024-11-02T16:06:03.350066" elapsed="13.549828"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">flash</stat>
-<stat pass="1" fail="0" skip="0">led</stat>
-<stat pass="1" fail="0" skip="0">regression</stat>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Stm32 Robot">Stm32 Robot</stat>
+<stat pass="4" fail="0" skip="0" id="s1" name="Stm32 Robot">Stm32 Robot</stat>
 </suite>
 </statistics>
 <errors>

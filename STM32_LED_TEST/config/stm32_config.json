@@ -1,0 +1,16 @@
+{
+    "device": {
+        "binary_path": "D:\\Workspace\\STM32F411E_DISCO\\STM32F411VET6_GPIO_and_UART\\Objects\\STM32F411VET6_GPIO_DRIVER.axf",
+        "programmer_path": "C:\\Program Files\\STMicroelectronics\\STM32Cube\\STM32CubeProgrammer\\bin\\STM32_Programmer_CLI.exe"
+    },
+    "communication": {
+        "serial_port": "COM3",
+        "baudrate": 115200,
+        "timeout": 1,
+        "command_delay": 0.5
+    },
+    "retry": {
+        "count": 3,
+        "delay": 0.5
+    }
+}
